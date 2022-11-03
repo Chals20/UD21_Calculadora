@@ -14,9 +14,9 @@ public class Calculadora extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField campoTexto;
-	private JTextField campoTexto2;
-	private JTextField resultTexto;
+	private static JTextField campoTexto;
+	private static JTextField campoTexto2;
+	private static JTextField resultTexto;
 
 	/**
 	 * Create the frame.
@@ -97,66 +97,89 @@ public class Calculadora extends JFrame {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {	//try-catch para controlar Excepciones
-					
-					double valor1 = Double.parseDouble(campoTexto.getText());
-					double valor2 = Double.parseDouble(campoTexto2.getText());
-
-					op.setText("+");	//seteamos el texto de la operacion a +
-					
-					double resultado = valor1 + valor2;
-					resultado = Math.round(resultado * 100.0) / 100.0;	//redondear resultado
-					resultTexto.setText(String.valueOf(resultado));
-				} catch (NullPointerException | NumberFormatException ex1) {
-					System.out.println("Introduce un valor correcto");
-				}
+				double valor1 = Double.parseDouble(campoTexto.getText());
+				double valor2 = Double.parseDouble(campoTexto2.getText());
+				double result = sumar(op, valor1, valor2);
+				System.out.println(result);
 
 			}
 		});
+	}
+	
+	public static double sumar(final JLabel op, double valor1, double valor2) {
+
+		double resultado = valor1 + valor2;
+		try {	//try-catch para controlar Excepciones
+						
+			op.setText("+");	//seteamos el texto de la operacion a +
+			
+			resultado = Math.round(resultado * 100.0) / 100.0;	//redondear resultado
+			resultTexto.setText(String.valueOf(resultado));
+			return resultado;
+		} catch (NullPointerException | NumberFormatException ex1) {
+			System.out.println("Introduce un valor correcto");
+		}
+		return resultado;
 	}
 
 	private void btnRestar(JButton btn, final JLabel op) {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-					
-					double valor1 = Double.parseDouble(campoTexto.getText());
-					double valor2 = Double.parseDouble(campoTexto2.getText());
-
-					op.setText("-");
-
-					double resultado = valor1 - valor2;
-					resultado = Math.round(resultado * 100.0) / 100.0;
-					resultTexto.setText(String.valueOf(resultado));
-				} catch (NullPointerException | NumberFormatException ex1) {
-					System.out.println("Introduce un valor correcto");
-				}
+				double valor1 = Double.parseDouble(campoTexto.getText());
+				double valor2 = Double.parseDouble(campoTexto2.getText());
+				double result = restar(op, valor1, valor2);
+				System.out.println(result);
+				
 			}
 		});
 	}
 
+	public static double restar(final JLabel op, double valor1, double valor2) {
+
+		double resultado = valor1 - valor2;
+		try {	//try-catch para controlar Excepciones
+						
+			op.setText("-");	//seteamos el texto de la operacion a -
+			
+			resultado = Math.round(resultado * 100.0) / 100.0;	//redondear resultado
+			resultTexto.setText(String.valueOf(resultado));
+			return resultado;
+		} catch (NullPointerException | NumberFormatException ex1) {
+			System.out.println("Introduce un valor correcto");
+		}
+		return resultado;
+	}
+	
 	// Asignar un Listener al botón de Multiplicación
 	private void btnMultiplicar(JButton btn, final JLabel op) {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-					
-					double valor1 = Double.parseDouble(campoTexto.getText());
-					double valor2 = Double.parseDouble(campoTexto2.getText());
-
-					op.setText("*");
-
-					double resultado = valor1 * valor2;
-					resultado = Math.round(resultado * 100.0) / 100.0;
-					resultTexto.setText(String.valueOf(resultado));
-				} catch (NullPointerException | NumberFormatException ex1) {
-					System.out.println("Introduce un valor correcto");
-				}
-
+				double valor1 = Double.parseDouble(campoTexto.getText());
+				double valor2 = Double.parseDouble(campoTexto2.getText());
+				double result = multiplicar(op, valor1, valor2);
+				System.out.println(result);
+				
 			}
 		});
+	}
+	
+	public static double multiplicar(final JLabel op, double valor1, double valor2) {
+
+		double resultado = valor1 * valor2;
+		
+		try {	//try-catch para controlar Excepciones
+						
+			op.setText("*");	//seteamos el texto de la operacion a *
+			
+			resultado = Math.round(resultado * 100.0) / 100.0;	//redondear resultado
+			resultTexto.setText(String.valueOf(resultado));
+			return resultado;
+		} catch (NullPointerException | NumberFormatException ex1) {
+			System.out.println("Introduce un valor correcto");
+		}
+		return resultado;
 	}
 
 	// Asignar un Listener al botón de División
@@ -164,22 +187,31 @@ public class Calculadora extends JFrame {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-					
-					double valor1 = Double.parseDouble(campoTexto.getText());
-					double valor2 = Double.parseDouble(campoTexto2.getText());
-
-					op.setText("/");
-
-					double resultado = valor1 / valor2;
-					resultado = Math.round(resultado * 100.0) / 100.0;
-					resultTexto.setText(String.valueOf(resultado));
-				} catch (NullPointerException | NumberFormatException ex1) {
-					System.out.println("Introduce un valor correcto");
-				}
+				double valor1 = Double.parseDouble(campoTexto.getText());
+				double valor2 = Double.parseDouble(campoTexto2.getText());
+				double result = dividir(op, valor1, valor2);
+				System.out.println(result);
+				
 
 			}
 		});
+	}
+	
+	public static double dividir(final JLabel op, double valor1, double valor2) {
+
+		double resultado = valor1 / valor2;
+		
+		try {	//try-catch para controlar Excepciones
+						
+			op.setText("/");	//seteamos el texto de la operacion a *
+			
+			resultado = Math.round(resultado * 100.0) / 100.0;	//redondear resultado
+			resultTexto.setText(String.valueOf(resultado));
+			return resultado;
+		} catch (NullPointerException | NumberFormatException ex1) {
+			System.out.println("Introduce un valor correcto");
+		}
+		return resultado;
 	}
 
 	private void btnSalir(JButton btn) {
